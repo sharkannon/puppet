@@ -15,6 +15,11 @@ module Puppet::Util::Package
       elsif (a == '.' && b == '.') then next
       elsif (a == '.' )            then return -1
       elsif (b == '.' )            then return 1
+      #PATCH for using MVN RPM Plugin
+      elsif (a == 'SNAPSHOT' && b == 'SNAPSHOT') then next
+      elsif (a == 'SNAPSHOT') then return -1
+      elsif (b == 'SNAPSHOT') then return 1
+      
       elsif (a =~ /^\d+$/ && b =~ /^\d+$/) then
         if( a =~ /^0/ or b =~ /^0/ ) then
           return a.to_s.upcase <=> b.to_s.upcase
